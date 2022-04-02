@@ -49,17 +49,23 @@ while c == 1:
         print('拉取中，请等待...')
         s = g.pull()
     except Exception as e:
-        # print(e)
+        #print(e)
         # print("----------------------------------------------------")
         print('拉取失败...')
         n = re.split(r'[\n\t]', str(e))
+        #print(n)
         n0 = [i for i in n if i != '']
-        # print(n0)
+        #print(n0)
+        #print(n0)
         # 查找需要还原的文件
         try:
-            need_result_star = n0.index(
-                "  stderr: 'error: Your local changes to the following files would be overwritten by merge:")
-            # print(need_result_star)
+            try:
+                need_result_star = n0.index(
+                    "  stderr: 'error: Your local changes to the following files would be overwritten by merge:")
+            except:
+                need_result_star = n0.index('error: Your local changes to the following files would be overwritten by merge:')
+
+                            # print(need_result_star)
             need_result_end = n0.index('Please commit your changes or stash them before you merge.')
             # print(need_result_end)
         except Exception as ee:
@@ -73,15 +79,15 @@ while c == 1:
 
         # 查找需要清理的文件
         try:
-            if needresultstate == 0:
+            try:
                 need_clean_star = n0.index(
                     "  stderr: 'error: The following untracked working tree files would be overwritten by merge:")
-            else:
+            except:
                 need_clean_star = n0.index(
                     'error: The following untracked working tree files would be overwritten by merge:')
-            # print(need_clean_star)
+            #print(need_clean_star)
             need_clean_end = n0.index('Please move or remove them before you merge.')
-            # print(need_clean_end)
+            #print(need_clean_end)
         except Exception as eee:
             needcleanstate = 0
         else:
