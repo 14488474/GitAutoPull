@@ -1,15 +1,19 @@
+# 需要第三方库 GitPython
 from git import Repo
 import re
 import os
-# 需要第三方库 GitPython
-global g
+
 #################################################################################
+
 # 所有项目存放的路径.比如我的项目于在C:\新建文件夹\英雄传release.此时应把引号内替换为C:/新建文件夹
+# cmd 执行 python -m pip install --upgrade pip
+# cmd 执行 pip install GitPython
 # 需要用/ 不要用\
 # 需要用/ 不要用\
 # 需要用/ 不要用\
 cfg = "D:/ayxz"
 #################################################################################
+global g
 c = 1
 while c == 1:
     needresult = []
